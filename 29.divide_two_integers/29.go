@@ -19,20 +19,14 @@ func divide(dividend int, divisor int) int {
 	}
 
 	division := 0
-	flag := (dividend ^ divisor) > 0
-	if (dividend > 0) || (dividend < 0 && divisor < 0) {
-		absDividend, absDivisor := abs(dividend), abs(divisor)
-		for absDividend >= absDivisor {
-			division++
-			absDividend -= absDivisor
-		}
-	} else {
-		absDividend, absDivisor := abs(dividend), abs(divisor)
-		for absDividend > 0 {
-			division++
-			absDividend -= absDivisor
-		}
+	flag := (dividend ^ divisor) >= 0
+
+	absDividend, absDivisor := abs(dividend), abs(divisor)
+	for absDividend >= absDivisor {
+		division++
+		absDividend -= absDivisor
 	}
+
 	if flag {
 		return division
 	}
