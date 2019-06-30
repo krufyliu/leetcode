@@ -13,6 +13,18 @@ type ListNode struct {
 	Next *ListNode
 }
 
+func TailList(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+	tail := head
+	for tail.Next != nil {
+		tail = tail.Next
+	}
+
+	return tail
+}
+
 func ListFromString(s string) *ListNode {
 	ss := strings.Split(s, "->")
 	if len(ss) == 0 {

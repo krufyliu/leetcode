@@ -3,7 +3,7 @@
  *
  * [44] Wildcard Matching
  */
-// package leetcode
+package leetcode
 
 func isMatch(s string, p string) bool {
 	return greedyMatch(s, p)
@@ -65,57 +65,57 @@ func matchWithBacktracking(s string, p string) bool {
 }
 
 func greedyMatch(s, p string) bool {
-    ls, lp := len(s), len(p)
+	ls, lp := len(s), len(p)
 
-    var matchAt, starAt = 0, -1
+	var matchAt, starAt = 0, -1
 
-    var i, j int
-    for i < ls {
-        if j < lp && p[j] == '*' {
-            matchAt = i
-            starAt = j
-            j++ // *从0次开始匹配
-        } else if j < lp && (p[j] == '?' || s[i] == p[j]) {
-            i++
-            j++
-        } else if starAt > -1 {
-            matchAt++  // * 多匹配一个字符
-            i = matchAt
-            j = starAt + 1
-        } else {
-            return false
-        }
-    }
+	var i, j int
+	for i < ls {
+		if j < lp && p[j] == '*' {
+			matchAt = i
+			starAt = j
+			j++ // *从0次开始匹配
+		} else if j < lp && (p[j] == '?' || s[i] == p[j]) {
+			i++
+			j++
+		} else if starAt > -1 {
+			matchAt++ // * 多匹配一个字符
+			i = matchAt
+			j = starAt + 1
+		} else {
+			return false
+		}
+	}
 
-    for j < lp {
-        if p[j] != '*' {
-            return false
-        }
-        j++
-    }
+	for j < lp {
+		if p[j] != '*' {
+			return false
+		}
+		j++
+	}
 
-    return true
+	return true
 }
 
 func matchByDynamic(s, p string) bool {
-    ls, lp := len(s), len(p)
+	ls, lp := len(s), len(p)
 
-    dp := make([][]bool, ls+1)
-    for i := 0; i <= ls; i++ {
-        dp[i] = make([]bool, lp+1)
-    }
+	dp := make([][]bool, ls+1)
+	for i := 0; i <= ls; i++ {
+		dp[i] = make([]bool, lp+1)
+	}
 
-    dp[ls][lp] = true
+	dp[ls][lp] = true
 
-    for i := ls; i >= 0 ; i-- {
-        for j := lp; j >= 0; j-- {
-            if i <ls && j < lp && (p[j] == '?' || s[i] == p[j]) {
-                dp[i][j] = dp[i+1][j+1]
-            } else if j < lp && p[j] == '*' {
-                dp[i][j] = (i < ls && dp[i+1][j]) || dp[i][j+1]
-            }
-        }
-    }
+	for i := ls; i >= 0; i-- {
+		for j := lp; j >= 0; j-- {
+			if i < ls && j < lp && (p[j] == '?' || s[i] == p[j]) {
+				dp[i][j] = dp[i+1][j+1]
+			} else if j < lp && p[j] == '*' {
+				dp[i][j] = (i < ls && dp[i+1][j]) || dp[i][j+1]
+			}
+		}
+	}
 
-    return dp[0][0]
+	return dp[0][0]
 }
