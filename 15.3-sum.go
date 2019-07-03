@@ -19,7 +19,7 @@ func threeSum(nums []int) [][]int {
 
 	for i := 0; i < ll-2; i++ {
 		if i == 0 || nums[i] != nums[i-1] {
-			parts := twoSum(nums[i+1:], -nums[i])
+			parts := twoSum15(nums[i+1:], -nums[i])
 			for j := 0; j < len(parts); j++ {
 				solutions = append(solutions, []int{nums[i], parts[j][0], parts[j][1]})
 			}
@@ -29,7 +29,7 @@ func threeSum(nums []int) [][]int {
 	return solutions
 }
 
-func twoSum(nums []int, target int) [][]int {
+func twoSum15(nums []int, target int) [][]int {
 	solutions := [][]int{}
 	ll := len(nums)
 	i, j := 0, ll-1
