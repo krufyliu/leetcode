@@ -6,21 +6,13 @@
 package leetcode
 
 func trailingZeroes(n int) int {
-	// twoCount := 0
-	fiveCount := 0
-
-	prod := 5
-	i := 1
-
-	for prod <= n {
-		if i%5 == 0 {
-			fiveCount += countN(i, 5)
-		}
-		i++
-		fiveCount++
-		prod = 5 * i
+	c := 0
+	for n >= 5 {
+		n = n / 5
+		c += n
 	}
-	return fiveCount
+
+	return c
 }
 
 func countN(n, m int) int {

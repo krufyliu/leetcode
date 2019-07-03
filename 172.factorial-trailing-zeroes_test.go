@@ -42,7 +42,7 @@ func Test_trailingZeroes(t *testing.T) {
 			args: args{
 				n: 1808548329,
 			},
-			want: 6,
+			want: 452137076,
 		},
 	}
 	for _, tt := range tests {
