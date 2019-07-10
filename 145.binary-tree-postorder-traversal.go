@@ -11,7 +11,7 @@
  *     Right *TreeNode
  * }
  */
-// package leetcode
+package leetcode
 
 func postorderTraversal(root *TreeNode) []int {
 	var stack []*TreeNode
@@ -23,7 +23,7 @@ func postorderTraversal(root *TreeNode) []int {
 
 	for {
 		for root != nil {
-            res = append(res, root.Val)
+			res = append(res, root.Val)
 			stack = append(stack, root)
 			root = root.Right
 		}
@@ -33,17 +33,16 @@ func postorderTraversal(root *TreeNode) []int {
 		}
 
 		top := stack[len(stack)-1]
-        stack = stack[:len(stack)-1]
+		stack = stack[:len(stack)-1]
 
 		if top.Left != nil {
-            root = top.Left
+			root = top.Left
 		}
-    }
-    // 反转
-    for i := 0; i < len(res)/2; i++ {
-        res[i], res[len(res)-i-1] = res[len(res)-i-1], res[i]
-    }
+	}
+	// 反转
+	for i := 0; i < len(res)/2; i++ {
+		res[i], res[len(res)-i-1] = res[len(res)-i-1], res[i]
+	}
 
-    
 	return res
 }

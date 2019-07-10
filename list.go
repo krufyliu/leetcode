@@ -25,11 +25,19 @@ func TailList(head *ListNode) *ListNode {
 	return tail
 }
 
+func (head *ListNode) nodeAt(idx int) *ListNode {
+	cur := head
+	for i := 0; i < idx; i++ {
+		cur = cur.Next
+	}
+	return cur
+}
+
 func ListFromString(s string) *ListNode {
-	ss := strings.Split(s, "->")
-	if len(ss) == 0 {
+	if len(s) == 0 {
 		return nil
 	}
+	ss := strings.Split(s, "->")
 
 	val, err := strconv.Atoi(ss[0])
 	if err != nil {
